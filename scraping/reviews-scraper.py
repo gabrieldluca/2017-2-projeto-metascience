@@ -18,10 +18,6 @@ def extract_reviews(url):
     for a in parsed_page.find_all('div', class_=tags):
         critscore = a.find('li', class_='brief_critscore')
         date = a.find('li', class_='post_date')
-        try:
-            if data['movie'] == 'Barking Water':
-                print(data)
-        except: pass
         
         if len(data) is 6:
             data['review_date'] = ''
@@ -55,7 +51,6 @@ if __name__ == '__main__':
     response = rq.get(PAGE+'0', headers=PAGE_HEADER)
     page = BeautifulSoup(response.text, 'html.parser')
     page_num = int(page.find_all('a', class_='page_num')[-1].text)
-    print(page_num)
     
     reviews = pd.concat(list(map(extract_page, range(page_num))))
     reviews = reviews.reset_index(drop=True)
