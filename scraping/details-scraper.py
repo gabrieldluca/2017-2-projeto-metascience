@@ -3,7 +3,10 @@ import pandas as pd
 import requests as rq
 
 MOVIE_DETAILS = pd.read_csv('./data/reviews.csv')['details']
-PAGE_HEADER = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4)                               AppleWebKit/537.36 (KHTML, like Gecko)                               Chrome/51.0.2704.103                               Safari/537.36'}
+PAGE_HEADER = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) \
+                              AppleWebKit/537.36 (KHTML, like Gecko) \
+                              Chrome/51.0.2704.103 \
+                              Safari/537.36'}
 
 def extract_details(url):
     global PAGE_HEADER
@@ -50,6 +53,3 @@ if __name__ == '__main__':
     details = pd.concat(list(map(extract_details, MOVIE_DETAILS)))
     details = details.reset_index(drop=True)
     details.to_csv('./data/details.csv', index=False)
-
-
-

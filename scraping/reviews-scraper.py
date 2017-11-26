@@ -54,4 +54,4 @@ if __name__ == '__main__':
     
     reviews = pd.concat(list(map(extract_page, range(page_num))))
     reviews = reviews.reset_index(drop=True)
-    reviews.to_csv('./scraping/data/reviews.csv', index=False)
+    reviews.to_csv('./data/reviews.csv', index=False)
